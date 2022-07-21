@@ -16,6 +16,8 @@
                 display: none;
             }
         </style>
+
+        <!-- <base href="/"> -->
     </head>
 
     <body>
@@ -37,6 +39,7 @@
 
 
         <script>
+
             const editor = DmnEditor.open({
                 container: document.getElementById("dmn-editor"),
                 initialContent: Promise.resolve(""),
@@ -46,9 +49,17 @@
                         "can-drive.dmn",
                         {
                             contentType: "text",
-                            content:
-                                fetch("https://github.com/paulovmr/kogito-online/blob/teste-embeddable/dmn-test/can-drive.dmn")
-                                    .then(content => content.text())
+                            // content: fetch("https://github.com/paulovmr/kogito-online/blob/teste-embeddable/dmn-test/can-drive.dmn").then(content => { content.text() })
+                            content: fetch("./can-drive.dmn")
+                                // .then(function (response) {
+                                //   console.log(response);
+                                // })
+                                .then(content => content.text())
+                                .catch(function (error) {
+                                    console.log('Request failed', error)
+                                })
+
+
                         }
                     ]
                 ])
@@ -100,6 +111,8 @@
                     document.getElementById("unsavedChanges").classList.add("hidden");
                 }
             })
+
+
         </script>
     </body>
 
